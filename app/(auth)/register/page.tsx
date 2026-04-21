@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -37,14 +37,14 @@ export default function RegisterPage() {
   ] as const;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'var(--bg)' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: '#f2f6fb' }}>
       <div className="relative flex flex-col items-center justify-center pt-20 pb-16 px-6 overflow-hidden">
         <div className="absolute inset-0" style={{
-          background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.18) 0%, transparent 70%)'
+          background: 'radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,158,227,0.12) 0%, transparent 70%)'
         }} />
         <div className="relative flex flex-col items-center gap-3">
           <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg" style={{
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            background: 'linear-gradient(135deg, #009ee3, #0080c0)',
             boxShadow: '0 8px 32px rgba(99,102,241,0.4)'
           }}>
             <svg width="30" height="30" fill="none" viewBox="0 0 24 24">
@@ -58,7 +58,7 @@ export default function RegisterPage() {
         </div>
       </div>
 
-      <div className="flex-1 rounded-t-[28px] px-6 pt-8 pb-8" style={{ background: 'var(--surface)' }}>
+      <div className="flex-1 rounded-t-[28px] px-6 pt-8 pb-8" style={{ background: 'white' }}>
         <h2 className="text-xl font-semibold mb-6" style={{ color: 'var(--text)' }}>Registrate</h2>
 
         {error && (
@@ -84,7 +84,7 @@ export default function RegisterPage() {
                   borderRadius: '14px', padding: '14px 16px', fontSize: '15px',
                   color: 'var(--text)', outline: 'none', transition: 'border-color 0.2s', width: '100%'
                 }}
-                onFocus={e => e.target.style.borderColor = 'var(--primary)'}
+                onFocus={e => e.target.style.borderColor = '#009ee3'}
                 onBlur={e => e.target.style.borderColor = 'var(--border)'}
               />
             </div>
@@ -93,11 +93,11 @@ export default function RegisterPage() {
           <button type="submit" disabled={loading}
             style={{
               marginTop: '4px',
-              background: loading ? '#4338ca' : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+              background: loading ? '#0080c0' : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
               borderRadius: '14px', padding: '15px', fontSize: '15px', fontWeight: 600,
               color: 'white', border: 'none', cursor: loading ? 'not-allowed' : 'pointer',
               opacity: loading ? 0.7 : 1, transition: 'all 0.2s', width: '100%',
-              boxShadow: loading ? 'none' : '0 4px 20px rgba(99,102,241,0.35)'
+              boxShadow: loading ? 'none' : '0 4px 20px rgba(0,158,227,0.3)'
             }}>
             {loading
               ? <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
@@ -110,7 +110,7 @@ export default function RegisterPage() {
 
         <p className="text-center mt-6" style={{ fontSize: '14px', color: 'var(--muted)' }}>
           ¿Ya tenés cuenta?{' '}
-          <Link href="/login" style={{ color: 'var(--primary-2)', fontWeight: 500 }}>
+          <Link href="/login" style={{ color: '#009ee3', fontWeight: 500 }}>
             Ingresá
           </Link>
         </p>

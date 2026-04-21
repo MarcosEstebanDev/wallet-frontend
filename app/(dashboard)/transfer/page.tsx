@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -53,7 +53,7 @@ export default function TransferPage() {
           Nueva transferencia
         </button>
         <button onClick={() => router.push('/')}
-          style={{ width: '100%', padding: '14px', borderRadius: 14, fontSize: 14, fontWeight: 600, background: 'linear-gradient(135deg, #6366f1, #8b5cf6)', border: 'none', color: 'white', cursor: 'pointer', boxShadow: '0 4px 20px rgba(99,102,241,0.35)' }}>
+          style={{ width: '100%', padding: '14px', borderRadius: 14, fontSize: 14, fontWeight: 600, background: 'linear-gradient(135deg, #009ee3, #0080c0)', border: 'none', color: 'white', cursor: 'pointer', boxShadow: '0 4px 20px rgba(0,158,227,0.3)' }}>
           Ver saldo
         </button>
       </div>
@@ -125,10 +125,10 @@ export default function TransferPage() {
         <button type="submit" disabled={status === 'loading'}
           style={{
             marginTop: 4, padding: '15px', borderRadius: 14, fontSize: 15, fontWeight: 600,
-            background: status === 'loading' ? '#4338ca' : 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            background: status === 'loading' ? '#0080c0' : 'linear-gradient(135deg, #009ee3, #0080c0)',
             border: 'none', color: 'white', cursor: status === 'loading' ? 'not-allowed' : 'pointer',
             opacity: status === 'loading' ? 0.7 : 1, transition: 'all 0.2s',
-            boxShadow: status === 'loading' ? 'none' : '0 4px 20px rgba(99,102,241,0.35)',
+            boxShadow: status === 'loading' ? 'none' : '0 4px 20px rgba(0,158,227,0.3)',
             display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8
           }}>
           {status === 'loading'

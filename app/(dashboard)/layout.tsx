@@ -4,34 +4,48 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { clearAuth } from '@/lib/auth';
 
+const P = '#009ee3';
+const M = '#a0aec0';
+
 const navItems = [
   {
     href: '/',
     label: 'Inicio',
-    icon: (active: boolean) => (
+    icon: (a: boolean) => (
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <path d="M3 12L12 3l9 9" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M5 10v9a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-9" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 12L12 3l9 9" stroke={a?P:M} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M5 10v9a1 1 0 0 0 1 1h4v-5h4v5h4a1 1 0 0 0 1-1v-9" stroke={a?P:M} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    href: '/deposit',
+    label: 'Cargar',
+    icon: (a: boolean) => (
+      <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10" stroke={a?P:M} strokeWidth="1.8"/>
+        <line x1="12" y1="8" x2="12" y2="16" stroke={a?P:M} strokeWidth="2" strokeLinecap="round"/>
+        <line x1="8" y1="12" x2="16" y2="12" stroke={a?P:M} strokeWidth="2" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
     href: '/transfer',
     label: 'Enviar',
-    icon: (active: boolean) => (
+    icon: (a: boolean) => (
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <path d="M22 2L11 13" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M22 2L11 13" stroke={a?P:M} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke={a?P:M} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
     href: '/history',
     label: 'Actividad',
-    icon: (active: boolean) => (
+    icon: (a: boolean) => (
       <svg width="22" height="22" fill="none" viewBox="0 0 24 24">
-        <path d="M12 2v10l4 4" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="12" cy="12" r="10" stroke={active ? '#6366f1' : '#64748b'} strokeWidth="1.8"/>
+        <circle cx="12" cy="12" r="10" stroke={a?P:M} strokeWidth="1.8"/>
+        <path d="M12 6v6l4 2" stroke={a?P:M} strokeWidth="1.8" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -46,13 +60,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       {/* Top bar */}
       <header style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '20px 20px 12px', position: 'sticky', top: 0, zIndex: 10,
-        background: 'var(--bg)'
+        padding: '16px 20px 12px', position: 'sticky', top: 0, zIndex: 10,
+        background: 'var(--surface)', borderBottom: '1px solid var(--border)',
+        boxShadow: '0 1px 8px rgba(0,0,0,0.05)'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{
             width: 34, height: 34, borderRadius: 10,
-            background: 'linear-gradient(135deg, #6366f1, #8b5cf6)',
+            background: 'linear-gradient(135deg, #009ee3, #0080c0)',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
@@ -66,7 +81,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <button onClick={() => { clearAuth(); router.push('/login'); }}
           style={{
             display: 'flex', alignItems: 'center', gap: 6,
-            background: 'var(--surface)', border: '1px solid var(--border)',
+            background: 'var(--surface-2)', border: '1px solid var(--border)',
             borderRadius: 10, padding: '6px 12px', cursor: 'pointer',
             color: 'var(--muted)', fontSize: 13, fontWeight: 500
           }}>
@@ -80,35 +95,30 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       </header>
 
       {/* Page content */}
-      <main style={{ padding: '4px 16px 110px' }}>
+      <main style={{ padding: '16px 16px 110px' }}>
         {children}
       </main>
 
       {/* Bottom Nav */}
       <nav style={{
         position: 'fixed', bottom: 0, left: '50%', transform: 'translateX(-50%)',
-        width: '100%', maxWidth: 430, padding: '0 16px 20px'
+        width: '100%', maxWidth: 430, background: 'var(--surface)',
+        borderTop: '1px solid var(--border)',
+        boxShadow: '0 -4px 20px rgba(0,0,0,0.06)'
       }}>
-        <div style={{
-          display: 'flex', justifyContent: 'space-around', alignItems: 'center',
-          background: 'var(--surface)',
-          border: '1px solid var(--border)',
-          borderRadius: 20, padding: '6px 8px',
-          boxShadow: '0 -4px 40px rgba(0,0,0,0.4)'
-        }}>
+        <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', padding: '6px 8px 16px' }}>
           {navItems.map(({ href, label, icon }) => {
             const active = pathname === href;
             return (
               <Link key={href} href={href} style={{
                 display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
-                padding: '10px 20px', borderRadius: 14, textDecoration: 'none',
-                background: active ? 'rgba(99,102,241,0.12)' : 'transparent',
-                transition: 'background 0.2s'
+                padding: '8px 12px', borderRadius: 12, textDecoration: 'none',
+                transition: 'background 0.15s'
               }}>
                 {icon(active)}
                 <span style={{
                   fontSize: 10, fontWeight: 600, letterSpacing: '0.02em',
-                  color: active ? '#6366f1' : '#64748b'
+                  color: active ? '#009ee3' : '#a0aec0'
                 }}>{label}</span>
               </Link>
             );

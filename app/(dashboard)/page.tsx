@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
@@ -50,8 +50,8 @@ export default function DashboardPage() {
       <div style={{
         borderRadius: 24, padding: '28px 24px 24px',
         position: 'relative', overflow: 'hidden',
-        background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #6d28d9 100%)',
-        boxShadow: '0 12px 40px rgba(79,70,229,0.35)'
+        background: 'linear-gradient(135deg, #009ee3 0%, #0070b8 100%)',
+        boxShadow: '0 12px 40px rgba(0,158,227,0.3)'
       }}>
         <div style={{ position: 'absolute', top: -40, right: -40, width: 160, height: 160, borderRadius: '50%', background: 'rgba(255,255,255,0.06)' }} />
         <div style={{ position: 'absolute', bottom: -60, left: -20, width: 200, height: 200, borderRadius: '50%', background: 'rgba(255,255,255,0.04)' }} />
@@ -90,28 +90,35 @@ export default function DashboardPage() {
       </div>
 
       {/* Quick actions */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10 }}>
         {[
           {
-            label: 'Enviar dinero', sub: 'Transferir fondos',
-            action: () => router.push('/transfer'),
-            icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M22 2L15 22l-4-9-9-4 20-7z" stroke="#6366f1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-            bg: 'rgba(99,102,241,0.1)', bord: 'rgba(99,102,241,0.2)'
+            label: 'Cargar', sub: 'Agregar fondos',
+            action: () => router.push('/deposit'),
+            icon: <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#009ee3" strokeWidth="2"/><line x1="12" y1="8" x2="12" y2="16" stroke="#009ee3" strokeWidth="2.2" strokeLinecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="#009ee3" strokeWidth="2.2" strokeLinecap="round"/></svg>,
+            bg: 'rgba(0,158,227,0.07)', bord: 'rgba(0,158,227,0.18)'
           },
           {
-            label: 'Actividad', sub: 'Ver movimientos',
+            label: 'Enviar', sub: 'Transferir',
+            action: () => router.push('/transfer'),
+            icon: <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M22 2L11 13" stroke="#009ee3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><path d="M22 2L15 22l-4-9-9-4 20-7z" stroke="#009ee3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+            bg: 'rgba(0,158,227,0.07)', bord: 'rgba(0,158,227,0.18)'
+          },
+          {
+            label: 'Actividad', sub: 'Movimientos',
             action: () => router.push('/history'),
-            icon: <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#8b5cf6" strokeWidth="2"/><path d="M12 6v6l4 2" stroke="#8b5cf6" strokeWidth="2" strokeLinecap="round"/></svg>,
-            bg: 'rgba(139,92,246,0.1)', bord: 'rgba(139,92,246,0.2)'
+            icon: <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#009ee3" strokeWidth="2"/><path d="M12 6v6l4 2" stroke="#009ee3" strokeWidth="2" strokeLinecap="round"/></svg>,
+            bg: 'rgba(0,158,227,0.07)', bord: 'rgba(0,158,227,0.18)'
           },
         ].map(({ label, sub, action, icon, bg, bord }) => (
           <button key={label} onClick={action} style={{
-            background: bg, border: `1px solid ${bord}`, borderRadius: 18,
-            padding: '18px 16px', textAlign: 'left', cursor: 'pointer'
+            background: bg, border: `1px solid ${bord}`, borderRadius: 16,
+            padding: '14px 10px', textAlign: 'center', cursor: 'pointer',
+            boxShadow: 'var(--shadow)'
           }}>
-            <div style={{ marginBottom: 10, lineHeight: 0 }}>{icon}</div>
-            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 3 }}>{label}</p>
-            <p style={{ fontSize: 11, color: 'var(--muted)' }}>{sub}</p>
+            <div style={{ marginBottom: 8, lineHeight: 0, display: 'flex', justifyContent: 'center' }}>{icon}</div>
+            <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 2 }}>{label}</p>
+            <p style={{ fontSize: 10, color: 'var(--muted)' }}>{sub}</p>
           </button>
         ))}
       </div>
